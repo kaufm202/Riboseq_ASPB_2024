@@ -1,5 +1,5 @@
 
-### 1. Download reads from NCBI SRA (sra-tools)
+### 1. Downloading reads from NCBI SRA (sra-tools)
 sra-tools: [GitHub](https://github.com/ncbi/sra-tools), [Documentation](https://github.com/ncbi/sra-tools/wiki)  
 Find Ribo-seq and RNA-seq samples on [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra/)  
 
@@ -140,7 +140,7 @@ STAR --genomeDir ${INDEX_DIR} \
 ```
 STAR will output two different alignment files: _Aligned.sortedByCoord.out.bam (genomic alignment) and _Aligned.toTranscriptome.out.bam (transcriptome alignment)
 
-### 6. Ribo-seq quality control (Ribo-seQC)
+### 6. Ribo-seq quality + P-sites (Ribo-seQC)
 Ribo-seQC (R package): [Original GitHub](https://github.com/ohlerlab/RiboseQC), [Documentation](https://github.com/lcalviell/Ribo-seQC/blob/master/RiboseQC-manual.pdf)  
 
 <ins>Use "_Aligned.sortedByCoord.out.bam" files from STAR.</ins> Can merge or subset reads using [samtools](https://www.htslib.org/)

@@ -1,11 +1,11 @@
 # Ribo-seq analysis preprocessing and quality control
 ## Steps for Ribo-seq preprocessing and quality control
 1. Downloading reads from NCBI SRA (sra-tools)
-2. Sequencing quality control (fastqc)
-3. Adapter / quality trimming (cutadapt)
+2. Assessing read quality (FastQC/MultiQC)
+3. Adapter/quality trimming (cutadapt)
 4. Remove contaminants (bowtie2)
-5. Aligning reads (STAR)
-6. Ribo-seq quality control (Ribo-seQC)
+5. Align to genome (STAR)
+6. Ribo-seq quality + P-sites (Ribo-seQC)
 
 ## Setup and general recommendations
 Steps 1-5 are run with bash scripts using packages available through [miniconda](https://docs.anaconda.com/free/miniconda/)
