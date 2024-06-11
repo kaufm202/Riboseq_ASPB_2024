@@ -6,6 +6,7 @@
 4. Remove contaminants (bowtie2)
 5. Align to genome (STAR)
 6. Ribo-seq quality + P-sites (Ribo-seQC)
+<img src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/113535253/8aa554d5-6099-4964-8143-4e74bc346fb6" width=50% height=50%>
 
 ## Setup and general recommendations
 Steps 1-5 are run with bash scripts using packages available through [miniconda](https://docs.anaconda.com/free/miniconda/)
