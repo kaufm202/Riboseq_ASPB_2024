@@ -35,7 +35,7 @@ Chr1    Araport11       CDS     5174    5326    .       +       0       gene_id 
 # GFF/GTF errors
 One issue with the GFF/GTF format is that different programs expect different formatting (some can only use GTF), require different attributes to be present, or cannot handle certain types of transcripts or features. This leads to frequent and sometimes quite cryptic error messages. Here I will provide some tools that have helped me to avoid and overcome these problems.
 
-# Converting GFF to GTF
+# Converting and filtering GFF/GTF
 ## Command line tools
 There are multiple command line tools like gffread and AGAT that can interconvert GFF and GTF. I have found that different tools work for different applications, but have not found a tool that works well for every species and for every program, and these tools typically do not allow much customization.  
 See summary of command line tools [here](https://agat.readthedocs.io/en/latest/gff_to_gtf.html)
@@ -260,6 +260,14 @@ Some programs expect at least one transcript from genes in the GFF, so we must r
 ```
 tx_genes <- unique(new_gtf[new_gtf$type == "transcript"]$gene_id)
 new_gtf <- new_gtf[new_gtf$gene_id %in% tx_genes,]
+```
+### CDS only GTF for quantification
+If using Ribo-seq and RNA-seq to quantify translation with tools like [kallisto](https://github.com/pachterlab/kallisto) or [RSEM](https://github.com/deweylab/RSEM), then you will need to align to only the coding sequences, which can be done by keeping only genes, mRNA, and CDS, then converting CDS to exons:
+```
+keep_types <- c("gene", "mRNA", "transcript", "CDS")
+new_gtf <- in_gtf[in_gtf$type %in% keep_types,]
+
+new_gtf$type <- gsub("CDS", "exon", new_gtf$type)
 ```
 ### Export to GTF
 Once all necessary modifications are made, export modified GFF to GTF format
