@@ -182,6 +182,7 @@ mcols(new_gtf) <- cbind(mcols(new_gtf)[,1:4], gene_id = "", transcript_id = "",
                           mcols(new_gtf)[5:ncol(mcols(new_gtf))])
 
 ### Fill in the empty columns for each feature type from Name, ID, and Parent columns
+# May require some modification depending on whether the gene_id or transcript_id needs to come from Name or ID
 new_gtf[new_gtf$type == "gene"]$transcript_id <- new_gtf[new_gtf$type == "gene"]$Name
 new_gtf[new_gtf$type == "gene"]$gene_id <- new_gtf[new_gtf$type == "gene"]$Name
 
@@ -275,3 +276,5 @@ Once all necessary modifications are made, export modified GFF to GTF format
 out_file <- "path/to/gtf_output.gtf"
 rtracklayer::export(new_gtf, out_file, format="gtf")
 ```
+# Try a different source
+If nothing seems to fix your GFF/GTF problems, try downloading the annotation from a different source. Many genomes and annotations are available through multiple sources that have slight differences in the formatting and features they include. For example, Arabidopsis thaliana Araport 11 is available through [Phytozome](https://phytozome-next.jgi.doe.gov/), [NCBI](https://www.ncbi.nlm.nih.gov/datasets/genome/), [EnsemblPlants](https://plants.ensembl.org/index.html), or [TAIR](https://www.arabidopsis.org/).
