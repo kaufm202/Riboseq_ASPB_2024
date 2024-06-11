@@ -188,8 +188,8 @@ RiboseQC_analysis(annotation_file = RANNOT,
 The main report from Ribo-seQC will be an HTML file. In addition, Ribo-seQC outputs P-sites that can be used for RiboPlotR with a bit of reformatting:
 ```
 # in R
-in_plus <- "path/to/file_coverage_plus.bedgraph"
-in_minus <- "path/to/file_coverage_minus.bedgraph"
+in_plus <- "path/to/file_P_sites_plus.bedgraph"
+in_minus <- "path/to/file_P_sites_minus.bedgraph"
 out_file <- "path/to/desired_out_file.riboplotr"
 
 plus <- read.table(in_plus, sep="\t")
