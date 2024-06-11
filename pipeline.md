@@ -149,12 +149,14 @@ Ribo-seQC (R package): [Original GitHub](https://github.com/ohlerlab/RiboseQC), 
 # in bash
 ### Merge samples with samtools
 samtools merge ${BAM_OUT} ${BAM_IN_LIST}
+samtools index ${BAM_OUT}
 
 ### Subset aligned reads
-samtools view -s .1 -b -o ${BAM_SUBSET} ${BAM_INPUT}
+samtools view -s .1 -b -o ${SUBSET_BAM_OUT} ${BAM_INPUT}
     # -s subsample fraction (i.e., .1 = 10%)
     # -b output in bam format
     # -o output file name
+samtools index ${SUBSET_BAM_OUT}
 ```
 If using R version 4.0 or above, we recommend installing a slightly modified version of Ribo-seQC ([Updated GitHub](https://github.com/hsinyenwu/RiboseQC_R4.2.1))
 ```
@@ -185,6 +187,7 @@ RiboseQC_analysis(annotation_file = RANNOT,
 ```
 The main report from Ribo-seQC will be an HTML file. In addition, Ribo-seQC outputs P-sites that can be used for RiboPlotR with a bit of reformatting:
 ```
+# in R
 in_plus <- "path/to/file_coverage_plus.bedgraph"
 in_minus <- "path/to/file_coverage_minus.bedgraph"
 out_file <- "path/to/desired_out_file.riboplotr"
@@ -207,4 +210,4 @@ comb <- comb[,c(3, 1, 2, 4)]
 write.table(comb, file=out_file, col.names = FALSE,
             row.names = FALSE, quote = FALSE, sep="\t")
 ```
-
+To use RiboPlotR, you will also need the RNA-seq BAM file and index, which you can merge and subset to a manageable file size as described earlier with samtools.
