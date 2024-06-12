@@ -110,7 +110,7 @@ STAR: [GitHub](https://github.com/alexdobin/STAR), [Documentation](https://githu
 
 If doing both translation efficiency analysis and ORF discovery, you will need to run STAR twice:  
 __For Ribo-seQC, make index using normal GTF with full transcripts.  
-For RSEM, [create CDS-only GTF](modifying_gtfs#cds-only-gtf-for-rsem), and use that to build index.__  
+For RSEM, [create CDS-only GTF](modifying_gtfs.md#cds-only-gtf-for-rsem), and use that to build index.__  
 
 In addition, you will need to make __separate indexes for Ribo-seq versus RNA-seq__  
 This means a total of 4 STAR indexes to complete all analyses: _CDS_Ribo, CDS_RNA, Full_Tx_Ribo, Full_Tx_RNA_
