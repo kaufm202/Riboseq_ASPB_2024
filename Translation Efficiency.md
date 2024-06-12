@@ -1,5 +1,7 @@
 ### Analyzing translation efficiency with Xtail
-[Original paper](https://www.nature.com/articles/ncomms11194)
+[Original paper](https://www.nature.com/articles/ncomms11194)  
+[More examples](https://rdrr.io/github/xryanglab/xtail/f/vignettes/xtail.Rmd)  
+
 ```
 ######################
 library(xtail)
