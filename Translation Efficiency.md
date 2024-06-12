@@ -7,7 +7,7 @@ Studying the changes in translation efficiency in two conditions. You need to
 3. Quantify Ribo-seq and RNA-seq reads with the STAR output bam files with RSEM.
 4. For step 2 or 3, you can also use Salmon or Kallisto for quantification. tximport (see below) can also input the output from Salmon or Kallisto.
 
-Install Xtail in R.
+#### Install Xtail in R.
 ```
 #Need to download gfortran to install Xtail in R4.3 or above.
 #For example: in https://cran.r-project.org/bin/macosx/tools/ download gfortran-12.2-universal.pkg
@@ -17,7 +17,7 @@ install_github("xryanglab/xtail")
 library(xtail)
 ```
 
-Example code:
+#### Example code:
 ```
 ######################
 library(xtail)
