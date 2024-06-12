@@ -61,4 +61,15 @@ plotFCs(test.results)
 # RPF-to-mRNA ratios in two conditions
 plotRs(test.results)
 
+#test.results contain all statistical analysis results for each gene
+test.results$resultsTable$Gene <- rownames(test.results$resultsTable)
+head(test.results$resultsTable)
+
+###########################################
+# adj p < 0.01, 1.5 fold change filtering #
+###########################################
+sig.results2 <- test.results$resultsTable %>% filter(pvalue.adjust < 0.01) %>% arrange(pvalue.adjust)
+sig.resultsP <- sig.results2 %>% filter(log2FC_TE_v1 > 0.5849625) %>% arrange(pvalue.adjust)
+names(sig.resultsP)
+head(sig.resultsP$Gene)
 ```
