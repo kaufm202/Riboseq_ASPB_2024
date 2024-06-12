@@ -105,8 +105,15 @@ bowtie2 -L 20 -x $rRNA_ind \
 ```
 If there are still major overrepresented sequences, you can try running [BLASTn](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome) and if it is a noncoding RNA like rRNA or tRNA, add it to the fasta and run again.
 
-### 5. Align to genome (STAR)
+### 5. Splice-aware alignment to transcripts and CDS (STAR)
 STAR: [GitHub](https://github.com/alexdobin/STAR), [Documentation](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf)  
+
+If doing both translation efficiency analysis and ORF discovery, you will need to run STAR twice:  
+__For Ribo-seQC, make index using normal GTF with full transcripts.  
+For RSEM, [create CDS-only GTF](modifying_gtfs#cds-only-gtf-for-rsem), and use that to build index.__  
+
+In addition, you will need to make __separate indexes for Ribo-seq versus RNA-seq__  
+This means a total of 4 STAR indexes to complete all analyses: _CDS_Ribo, CDS_RNA, Full_Tx_Ribo, Full_Tx_RNA_
 ```
 ### Create STAR index
 STAR --runMode genomeGenerate \
@@ -118,8 +125,9 @@ STAR --runMode genomeGenerate \
     # --genomeFastaFiles path to genome fasta
     # --sjdbGTFfile path to GTF file
     # --sjdbOverhang max read length minus 1 (usually ~35 for Ribo-seq, longer for RNA-seq)
+    # Must make separate index for Ribo-seq and RNA-seq since --sjdbOverhang will differ
 
-### Run STAR alignment
+### Run STAR alignment for single end (paired end add another file after --readFilesIn)
 STAR --genomeDir ${INDEX_DIR} \
   --readFilesCommand zcat \
   --readFilesIn ${DIRECTORY}/${SRA}_rrna_trim.fq.gz \
@@ -143,7 +151,7 @@ STAR will output two different alignment files: _Aligned.sortedByCoord.out.bam (
 ### 6. Ribo-seq quality + P-sites (Ribo-seQC)
 Ribo-seQC (R package): [Original GitHub](https://github.com/ohlerlab/RiboseQC), [Documentation](https://github.com/lcalviell/Ribo-seQC/blob/master/RiboseQC-manual.pdf)  
 
-<ins>Use "_Aligned.sortedByCoord.out.bam" files from STAR.</ins> Can merge or subset reads using [samtools](https://www.htslib.org/)
+Use "_Aligned.sortedByCoord.out.bam" files from full transcript aligned STAR. Can merge or subset reads using [samtools](https://www.htslib.org/)
 
 ```
 # in bash
@@ -211,3 +219,41 @@ write.table(comb, file=out_file, col.names = FALSE,
             row.names = FALSE, quote = FALSE, sep="\t")
 ```
 To use RiboPlotR, you will also need the RNA-seq BAM file and index, which you can merge and subset to a manageable file size as described earlier with samtools.
+
+### 7. Quantification (RSEM)
+RSEM: [GitHub](https://github.com/deweylab/RSEM), [Documentation](https://www.encodeproject.org/documents/0c78ea4b-9392-421b-a6f3-6c858b6002aa/@@download/attachment/RSEM_Documentation.pdf)  
+RSEM uses the "_Aligned.toTranscriptome.out.bam" outputs from CDS-aligned STAR  
+Here you again need to make a __separate index for Ribo-seq versus RNA-seq__
+```
+### Build index
+rsem-prepare-reference --gtf ${CDS_GTF} ${GENOME_FASTA} ${INDEX_DIR}
+    # RSEM will build off the STAR, so ${INDEX_DIR} MUST be the same one used for STAR
+    # Run separately for Ribo-seq and RNA-seq
+```
+To run the quantification, you will need the read length mean standard deviation for single end reads. You can either estimate from the FastQC reports or calculate the mean and SD for each sample using:
+```
+zcat ${DIRECTORY}/${SRA}_rrna_trim.fq.gz | awk 'BEGIN { t=0.0;sq=0.0; n=0;} ;NR%4==2 {n++;L=length($0);t+=L;sq+=L*L;}END{m=t/n;printf("total=%d \t avg=%f \t stddev=%f\n",n,m,sq/n-m*m);}' -
+```
+The mean and SD will be different for Ribo-seq and RNA-seq, but the values should be similar between samples of the same type, so you can use the same values within the sample type.
+```
+### Single end RNA-seq and Ribo-seq
+rsem-calculate-expression \
+  --fragment-length-mean ${AVE} \
+  --fragment-length-sd ${SD} \
+  --bam --no-bam-output \
+  --forward-prob=1 \
+  --seed-length 21 \
+  --alignments ${DIRECTORY}/${SRA}_Aligned.toTranscriptome.out.bam \
+  ${STAR_CDS_INDEX_DIR} ${DIRECTORY}/${SRA}_rsem
+    # change mean, SD, and index for RNA-seq vs. Ribo-seq
+    # change --forward-prob depending on library strandedness
+
+### Paired end RNA-seq
+rsem-calculate-expression \
+  --paired-end --bam --no-bam-output \
+  --forward-prob=0 \
+  --alignments ${rna_in}/${sample}_star_rna_Aligned.toTranscriptome.out.bam \
+  ${STAR_CDS_INDEX_DIR}/rna ${DIRECTORY}/${SRA}_rsem
+    # paired end does not need mean and SD
+    # change --forward-prob depending on library strandedness
+```

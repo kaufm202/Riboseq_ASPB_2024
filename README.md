@@ -1,15 +1,16 @@
 # Ribo-seq analysis preprocessing and quality control
 ## Steps for Ribo-seq preprocessing and quality control
-1. Downloading reads from NCBI SRA (sra-tools)
-2. Assessing read quality (FastQC/MultiQC)
-3. Adapter/quality trimming (cutadapt)
-4. Remove contaminants (bowtie2)
-5. Align to genome (STAR)
-6. Ribo-seq quality + P-sites (Ribo-seQC)  
+1. [Downloading reads from NCBI SRA (sra-tools)](pipeline#1-downloading-reads-from-ncbi-sra-sra-tools)  
+2. [Assessing read quality (FastQC/MultiQC)](pipeline#2-assessing-read-quality-fastqcmultiqc)  
+3. [Adapter/quality trimming (cutadapt)](pipeline#3-adapterquality-trimming-cutadapt)  
+4. [Remove contaminants (bowtie2)](pipeline#4-removing-contaminants-bowtie2)  
+5. [Align to transcripts and CDS (STAR)](pipeline#5-splice-aware-alignment-to-transcripts-and-cds-star)  
+6. [Ribo-seq quality + P-sites (Ribo-seQC)](pipeline#6-ribo-seq-quality--p-sites-ribo-seqc)  
+7. [Quantification (RSEM)](pipeline#7-quantification-rsem)  
 <img src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/113535253/8aa554d5-6099-4964-8143-4e74bc346fb6" width=50% height=50%>
 
 ## Setup and general recommendations
-Steps 1-5 are run with bash scripts using packages available through [miniconda](https://docs.anaconda.com/free/miniconda/)
+Steps 1-5 and 7 are run with bash scripts using packages available through [miniconda](https://docs.anaconda.com/free/miniconda/)
 
 Step 6 (Ribo-seQC) is run in [R](https://cran.r-project.org/bin/windows/base/)  
 
