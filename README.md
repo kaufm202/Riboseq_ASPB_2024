@@ -7,7 +7,8 @@
 5. [Align to transcripts and CDS (STAR)](pipeline#5-splice-aware-alignment-to-transcripts-and-cds-star)  
 6. [Ribo-seq quality + P-sites (Ribo-seQC)](pipeline#6-ribo-seq-quality--p-sites-ribo-seqc)  
 7. [Quantification (RSEM)](pipeline#7-quantification-rsem)  
-<img src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/113535253/8aa554d5-6099-4964-8143-4e74bc346fb6" width=50% height=50%>
+
+<img src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/113535253/35185277-46a1-4db9-bba4-32a8da6bdf4c" width=65% height=65%>
 
 ## Setup and general recommendations
 Steps 1-5 and 7 are run with bash scripts using packages available through [miniconda](https://docs.anaconda.com/free/miniconda/)
