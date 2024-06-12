@@ -1,9 +1,12 @@
 ### Analyzing differential translation with Xtail
+
+Since the differential translation analysis needs to consider the variability for both RNA-seq and Ribo-seq, it is not as accurate as the RNA-seq (differential expression) analysis.
+
 [Original paper](https://www.nature.com/articles/ncomms11194)  
 [More examples](https://rdrr.io/github/xryanglab/xtail/f/vignettes/xtail.Rmd)  
 Studying the changes in translation efficiency in two conditions. You need to 
 1. Make a gtf/gff3 file for only CDS region of all genes.
-2. Map the ribo-seq and RNA-seq reads to the CDS only gtf/gff regions of the genome with STAR.
+2. Map the Ribo-seq and RNA-seq reads to the CDS only gtf/gff regions of the genome with STAR.
 3. Quantify Ribo-seq and RNA-seq reads with the STAR output bam files with RSEM.
 4. For step 2 or 3, you can also use Salmon or Kallisto for quantification. tximport (see below) can also input the output from Salmon or Kallisto.
 
@@ -22,7 +25,7 @@ library(xtail)
 ######################
 library(xtail)
 library(tximport)
-#D and A are two different treatments
+#D and T are two different treatments
 #RNA (the input files here are RSEM quantification files for each sample (biological replicate).)
 dir <- "/path/to/CDS_quant_RSEM/RNA/"
 sampletxt <-data.frame(sample=c("D1","D2","D3","T1","T2","T3")) 
