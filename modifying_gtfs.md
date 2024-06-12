@@ -263,7 +263,7 @@ tx_genes <- unique(new_gtf[new_gtf$type == "transcript"]$gene_id)
 new_gtf <- new_gtf[new_gtf$gene_id %in% tx_genes,]
 ```
 ### CDS only GTF for RSEM
-If using Ribo-seq and RNA-seq to quantify translation with [RSEM](https://github.com/deweylab/RSEM), then you will need to align to only the coding sequences, which can be done by keeping only genes, mRNA, and CDS, then converting CDS to exons:
+If using Ribo-seq and RNA-seq to quantify translation with RSEM, then you will need to align to only the coding sequences, which can be done by keeping only genes, mRNA, and CDS, then converting CDS to exons:
 ```
 keep_types <- c("gene", "mRNA", "transcript", "CDS")
 new_gtf <- in_gtf[in_gtf$type %in% keep_types,]
