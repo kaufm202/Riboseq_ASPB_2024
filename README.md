@@ -1,13 +1,4 @@
 # Ribo-seq analysis preprocessing and quality control
-## Steps for Ribo-seq preprocessing and quality control
-1. [Downloading reads from NCBI SRA (sra-tools)](pipeline.md#1-downloading-reads-from-ncbi-sra-sra-tools)  
-2. [Assessing read quality (FastQC/MultiQC)](pipeline.md#2-assessing-read-quality-fastqcmultiqc)  
-3. [Adapter/quality trimming (cutadapt)](pipeline.md#3-adapterquality-trimming-cutadapt)  
-4. [Remove contaminants (bowtie2)](pipeline.md#4-removing-contaminants-bowtie2)  
-5. [Align to transcripts and CDS (STAR)](pipeline.md#5-splice-aware-alignment-to-transcripts-and-cds-star)  
-6. [Ribo-seq quality + P-sites (Ribo-seQC)](pipeline.md#6-ribo-seq-quality--p-sites-ribo-seqc)  
-7. [Quantification (RSEM)](pipeline.md#7-quantification-rsem)  
-
 <img src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/113535253/35185277-46a1-4db9-bba4-32a8da6bdf4c" width=65% height=65%>
 
 ## Setup and general recommendations

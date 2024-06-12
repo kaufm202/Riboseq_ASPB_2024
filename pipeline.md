@@ -1,4 +1,11 @@
-
+## Steps for Ribo-seq preprocessing and quality control
+1. [Downloading reads from NCBI SRA (sra-tools)](#1-downloading-reads-from-ncbi-sra-sra-tools)  
+2. [Assessing read quality (FastQC/MultiQC)](#2-assessing-read-quality-fastqcmultiqc)  
+3. [Adapter/quality trimming (cutadapt)](#3-adapterquality-trimming-cutadapt)  
+4. [Remove contaminants (bowtie2)](#4-removing-contaminants-bowtie2)  
+5. [Align to transcripts and CDS (STAR)](#5-splice-aware-alignment-to-transcripts-and-cds-star)  
+6. [Ribo-seq quality + P-sites (Ribo-seQC)](#6-ribo-seq-quality--p-sites-ribo-seqc)  
+7. [Quantification (RSEM)](#7-quantification-rsem)  
 ### 1. Downloading reads from NCBI SRA (sra-tools)
 sra-tools: [GitHub](https://github.com/ncbi/sra-tools), [Documentation](https://github.com/ncbi/sra-tools/wiki)  
 Find Ribo-seq and RNA-seq samples on [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra/)  
