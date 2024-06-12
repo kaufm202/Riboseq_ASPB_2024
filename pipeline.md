@@ -153,7 +153,20 @@ STAR --genomeDir ${INDEX_DIR} \
     # --readFilesIn input files from bowtie2 output, for paired end put both files
     # see STAR manual for details on other options
 ```
-STAR will output two different alignment files: _Aligned.sortedByCoord.out.bam (genomic alignment) and _Aligned.toTranscriptome.out.bam (transcriptome alignment)
+STAR will output two different alignment files: _Aligned.sortedByCoord.out.bam (genomic alignment) and _Aligned.toTranscriptome.out.bam (transcriptome alignment). BAM is a binary version of [Sequence Alignment Map (SAM)](https://samtools.github.io/hts-specs/SAMv1.pdf) files. BAM files cannot be viewed directly, but can be viewed using samtools:
+```
+$ samtools view SRR3498209_star_ribo_Aligned.sortedByCoord.out.bam | head
+SRR3498209.240605       0       Chr1    558     0       14M6S   *       0       0       TATTCTGAAGTTCTGCAACG    DDDDDIIIIIIIIIIIIIII    NH:i:7  HI:i:1  AS:i:13    nM:i:0
+SRR3498209.37112121     0       Chr1    558     0       14M6S   *       0       0       TATTCTGAAGTTCTGCAACG    @@@DD?D::?=C?GFEIEEF    NH:i:7  HI:i:1  AS:i:13    nM:i:0
+SRR3498209.42992077     0       Chr1    558     0       14M6S   *       0       0       TATTCTGAAGTTCTGCAACG    CCCFFFFFHHHHHJJJJJJJ    NH:i:7  HI:i:1  AS:i:13    nM:i:0
+SRR3498209.58479780     0       Chr1    558     0       14M6S   *       0       0       TATTCTGAAGTTCTGCAACG    DDDDDIIHHIIIIIIIIIII    NH:i:7  HI:i:1  AS:i:13    nM:i:0
+SRR3498209.112905847    0       Chr1    558     0       14M6S   *       0       0       TATTCTGAAGTTCTGCAACG    DDDDDIIIHIIIIIGIIIHI    NH:i:7  HI:i:1  AS:i:13    nM:i:0
+SRR3498209.47658999     0       Chr1    1061    255     7S20M   *       0       0       GCGGGGTCAACTCCCCCCACCTCCCCC     ;<99@(;(8@)).=@(8=(<=1:>(==     NH:i:1     HI:i:1  AS:i:17 nM:i:1
+SRR3498209.38461983     0       Chr1    1068    255     7S17M   *       0       0       GTTTGAGCCCCACCTCCCCCCCCC        ;;;(()()<@((((((((;@/0<'        NH:i:1     HI:i:1  AS:i:16 nM:i:0
+SRR3498209.48318447     16      Chr1    1081    3       20M6S   *       0       0       CCCCCCCCCCACCACCCAAAAGATGC      70&1&8-(8(2(8=</;)@=)(5;<;      NH:i:2     HI:i:1  AS:i:17 nM:i:1
+SRR3498209.30620583     16      Chr1    3609    1       18M6S   *       0       0       ACTTCACTGTCTTCCACCTATCCT        IIIHF<<IIIIIIIIIIIIDDDDD        NH:i:3     HI:i:1  AS:i:15 nM:i:1
+SRR3498209.947027       0       Chr1    3856    255     24M     *       0       0       GTTGAAGTAGCCATCAGCGAGGTC        DDDDDIIIIIIIIIIIIIIIIIII        NH:i:1     HI:i:1  AS:i:23 nM:i:0
+```
 
 ### 6. Ribo-seq quality + P-sites (Ribo-seQC)
 Ribo-seQC (R package): [Original GitHub](https://github.com/ohlerlab/RiboseQC), [Documentation](https://github.com/lcalviell/Ribo-seQC/blob/master/RiboseQC-manual.pdf)  
@@ -202,7 +215,7 @@ RiboseQC_analysis(annotation_file = RANNOT,
     # If 3-nt is too low, Ribo-seQC will not calculate P-site offsets,
     #     add the option readlength_choice_method = "all" to force P-site calcs
 ```
-The main report from Ribo-seQC will be an HTML file. In addition, Ribo-seQC outputs P-sites that can be used for RiboPlotR with a bit of reformatting:
+The main report from Ribo-seQC will be an HTML file, which also contains the P-site offset values. In addition, Ribo-seQC outputs P-site positions that can be used for RiboPlotR with a bit of reformatting:
 ```
 # in R
 in_plus <- "path/to/file_P_sites_plus.bedgraph"
@@ -227,7 +240,21 @@ comb <- comb[,c(3, 1, 2, 4)]
 write.table(comb, file=out_file, col.names = FALSE,
             row.names = FALSE, quote = FALSE, sep="\t")
 ```
-To use RiboPlotR, you will also need the RNA-seq BAM file and index, which you can merge and subset to a manageable file size as described earlier with samtools.
+The output file has four columns: count, chromosome, position, strand. This file can be used as the P-site input for RiboPlotR.
+```
+$ head mergedBamFile.bam_P_sites.riboplotr
+21      Chr1    3741    +
+1       Chr1    4744    +
+13      Chr1    4769    +
+8       Chr1    4838    +
+18      Chr1    4854    +
+9       Chr1    5080    +
+18      Chr1    5240    +
+26      Chr1    5261    +
+26      Chr1    23585   +
+2       Chr1    23609   +
+```
+To use RiboPlotR, you will also need the GTF and RNA-seq BAM file and index, which you can merge and subset to a manageable file size as described earlier with samtools.
 
 ### 7. Quantification (RSEM)
 RSEM: [GitHub](https://github.com/deweylab/RSEM), [Documentation](https://www.encodeproject.org/documents/0c78ea4b-9392-421b-a6f3-6c858b6002aa/@@download/attachment/RSEM_Documentation.pdf)  
@@ -265,4 +292,18 @@ rsem-calculate-expression \
   ${STAR_CDS_INDEX_DIR}/rna ${DIRECTORY}/${SRA}_rsem
     # paired end does not need mean and SD
     # change --forward-prob depending on library strandedness
+```
+RSEM will output two tab-delimited files with abundances at the gene level and transcript level (.genes.results and .isoforms.results) which can be used for downstream translation efficiency and differential expression analysis.
+```
+$ head SRR3498209_ribo.isoforms.results
+transcript_id   gene_id length  effective_length        expected_count  TPM     FPKM    IsoPct
+AT1G01010.1     AT1G01010       1290    1260.51 96.00   2.64    3.00    100.00
+AT1G01020.1     AT1G01020       738     708.51  0.00    0.00    0.00    0.00
+AT1G01020.2     AT1G01020       576     546.51  0.00    0.00    0.00    0.00
+AT1G01020.3     AT1G01020       711     681.51  0.00    0.00    0.00    0.00
+AT1G01020.4     AT1G01020       711     681.51  0.00    0.00    0.00    0.00
+AT1G01020.5     AT1G01020       597     567.51  84.00   5.12    5.83    100.00
+AT1G01020.6     AT1G01020       315     285.51  0.00    0.00    0.00    0.00
+AT1G01030.1     AT1G01030       1077    1047.51 0.00    0.00    0.00    0.00
+AT1G01030.2     AT1G01030       1008    978.51  72.00   2.55    2.90    100.00
 ```
