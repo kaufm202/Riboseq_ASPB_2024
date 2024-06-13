@@ -30,6 +30,8 @@ done
 ```
 ### RiboTaper for ORF identification
 <img alt="image" src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/4383665/74942c9d-9734-452a-91d6-d803a9b137bb" width=65% height=65%>  
+<img src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/4383665/4b4d1358-2d91-4a10-8114-bbb550790acc" width=65% height=65%>
+
 
 [Instruction and example code](https://github.com/kaufm202/Riboseq_ASPB_2024/blob/main/RiboTaper%20and%20Visualization.md)  
 
