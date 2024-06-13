@@ -8,7 +8,7 @@ Studying the changes in translation efficiency in two conditions. You need to
 1. Make a gtf/gff3 file for only CDS region of all genes.
 2. Map the Ribo-seq and RNA-seq reads to the CDS only gtf/gff regions of the genome with STAR.
 3. Quantify Ribo-seq and RNA-seq reads with the STAR output bam files with RSEM.
-4. For step 2 or 3, you can also use Salmon or Kallisto for quantification. tximport (see below) can also input the output from Salmon or Kallisto.
+4. For step 2 or 3, you can also use Salmon or Kallisto for quantification. [tximport](https://bioconductor.org/packages/release/bioc/html/tximport.html) (see below) can also input the output from Salmon or Kallisto.
 
 #### Install Xtail in R.
 ```
