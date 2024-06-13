@@ -35,7 +35,8 @@ done
 [Instruction and example code](https://github.com/kaufm202/Riboseq_ASPB_2024/blob/main/RiboTaper%20and%20Visualization.md)  
 
 ### RiboPlotR for ORF visualization
-<img alt="image" src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/4383665/a35752ab-1992-46ff-9160-4545be3c97f3" width=65% height=65%>   
+<img width="530" alt="image" src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/4383665/0e9058fb-96d2-48c9-9270-86354cdc4b8b" width=65% height=65%>
+   
 
 [Instruction and example code](https://github.com/hsinyenwu/RiboPlotR)   
 
