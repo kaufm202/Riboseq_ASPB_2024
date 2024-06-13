@@ -40,3 +40,9 @@ done
 
 [Make gtf files for uORFs](https://github.com/hsinyenwu/RiboPlotR_addition)   
 
+### 2022 workshop material, including how to calculate 3-nt periodicity
+[2022 ASPB workshop link](https://github.com/hsinyenwu/Ribo-seq-informatics-2022)
+
+
+
+
