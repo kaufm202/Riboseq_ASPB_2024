@@ -75,7 +75,8 @@ ORF_pept<-peptide sequence of the identified ORF
 For detail information and examples about RiboPlotR please visit: https://github.com/hsinyenwu/RiboPlotR
 
 ### Step 10: GWIPS website and TAIR website
-[GWIPS](https://gwips.ucc.ie/cgi-bin/hgGateway) 3 Arabidopsis and 1 Maize datasets 
+[GWIPS](https://gwips.ucc.ie/cgi-bin/hgGateway) 3 Arabidopsis and 1 Maize datasets   
+
 [TAIR](https://www.arabidopsis.org) 1 very deep Arabidopsis seedling dataset
 1. Inside a gene page, click fill screen view:
 <img width="1056" alt="image" src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/4383665/07d99a97-21af-485d-a147-66e2c21bad56">
