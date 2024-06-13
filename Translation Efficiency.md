@@ -62,14 +62,18 @@ plotFCs(test.results)
 plotRs(test.results)
 
 #test.results contain all statistical analysis results for each gene
-test.results$resultsTable$Gene <- rownames(test.results$resultsTable)
+#test.results contain all statistical analysis results for each gene
+DF <- as.data.frame(test.results$resultsTable)
+DF$Gene <- rownames(test.results$resultsTable)
 head(test.results$resultsTable)
+head(DF)
 
-###########################################
-# adj p < 0.01, 1.5 fold change filtering #
-###########################################
-sig.results2 <- test.results$resultsTable %>% filter(pvalue.adjust < 0.01) %>% arrange(pvalue.adjust)
-sig.resultsP <- sig.results2 %>% filter(log2FC_TE_v1 > 0.5849625) %>% arrange(pvalue.adjust)
-names(sig.resultsP)
-head(sig.resultsP$Gene)
+############################################
+# adj p < 0.01, 1.5 fold induced filtering #
+############################################
+sig.results2 <- DF %>% filter(pvalue.adjust < 0.01) %>% arrange(pvalue.adjust)
+sig.resultsP <- sig.results2 %>% filter(log2FC_TE_v1 > log2(1.5)) %>% arrange(pvalue.adjust)
+nrow(sig.resultsP)
+head(sig.resultsP)
+
 ```
