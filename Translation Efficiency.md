@@ -54,7 +54,7 @@ rownames(mrna) <- rownames(counts)
 condition <- c("D","D","D","T","T","T")
 
 # https://rdrr.io/github/xryanglab/xtail/f/vignettes/xtail.Rmd
-test.results <- xtail(mrna,rpf,condition,bins=1000) #bins set to 1000 to allow quick sample run
+test.results <- xtail(mrna,rpf,condition,bins=1000) #bins set to 1000 to allow quick sample run, use default 10000 for better results
 head(test.results$resultsTable)
 # log2 fold changes in two conditions
 plotFCs(test.results)
