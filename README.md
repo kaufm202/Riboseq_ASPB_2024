@@ -1,7 +1,7 @@
-# Ribo-seq analysis preprocessing and quality control
+## Ribo-seq analysis preprocessing and quality control
 <img src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/113535253/35185277-46a1-4db9-bba4-32a8da6bdf4c" width=65% height=65%>
 
-## Setup and general recommendations
+### Setup and general recommendations
 Steps 1-5 and 7 are run with bash scripts using packages available through [miniconda](https://docs.anaconda.com/free/miniconda/)
 
 Step 6 (Ribo-seQC) is run in [R](https://cran.r-project.org/bin/windows/base/)  
@@ -28,3 +28,12 @@ do
     fi
 done
 ```
+### RiboTaper for ORF identification
+<img alt="image" src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/4383665/74942c9d-9734-452a-91d6-d803a9b137bb" width=65% height=65%>
+[Instruction and example code](https://github.com/kaufm202/Riboseq_ASPB_2024/blob/main/RiboTaper%20and%20Visualization.md)
+
+### RiboPlotR for ORF visualization
+<img alt="image" src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/4383665/a35752ab-1992-46ff-9160-4545be3c97f3" width=65% height=65%>
+[Instruction and example code](https://github.com/hsinyenwu/RiboPlotR)
+[Make gtf files for uORFs](https://github.com/hsinyenwu/RiboPlotR_addition)
+
