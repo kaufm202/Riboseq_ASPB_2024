@@ -34,13 +34,14 @@ done
 [Instruction and example code](https://github.com/kaufm202/Riboseq_ASPB_2024/blob/main/Translation%20Efficiency.md)  
 
 ### RiboTaper for ORF identification 
-<img width="596" alt="image" src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/4383665/00155f1c-5612-4bf6-b0f9-32eb45a44108">  
+<img width="596" alt="image" src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/4383665/00155f1c-5612-4bf6-b0f9-32eb45a44108" width=65% height=65%>  
 
 
 [Instruction and example code](https://github.com/kaufm202/Riboseq_ASPB_2024/blob/main/RiboTaper%20and%20Visualization.md)  
 
 ### RiboPlotR for ORF visualization
-<img width="512" alt="image" src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/4383665/0e9058fb-96d2-48c9-9270-86354cdc4b8b" width=65% height=65%>
+<img width="596" alt="image" src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/4383665/b82ddddb-56b1-45ab-8800-72ea1cf0ae10" width=65% height=65%>
+
    
 
 [Instruction and example code](https://github.com/hsinyenwu/RiboPlotR)   
