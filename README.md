@@ -33,7 +33,7 @@ done
 [Instruction and example code](https://github.com/kaufm202/Riboseq_ASPB_2024/blob/main/RiboTaper%20and%20Visualization.md)  
 
 ### RiboPlotR for ORF visualization
-<img alt="image" src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/4383665/a35752ab-1992-46ff-9160-4545be3c97f3" width=65% height=65%>  
+<img alt="image" src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/4383665/a35752ab-1992-46ff-9160-4545be3c97f3" width=65% height=65%>   
 [Instruction and example code](https://github.com/hsinyenwu/RiboPlotR)  
-[Make gtf files for uORFs](https://github.com/hsinyenwu/RiboPlotR_addition)
+[Make gtf files for uORFs](https://github.com/hsinyenwu/RiboPlotR_addition)  
 
