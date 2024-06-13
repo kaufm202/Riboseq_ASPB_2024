@@ -3,7 +3,7 @@
 Since the differential translation analysis needs to consider the variability for both RNA-seq and Ribo-seq, it is not as accurate as the RNA-seq (differential expression) analysis.
 
 [Original paper](https://www.nature.com/articles/ncomms11194)  
-[More examples](https://rdrr.io/github/xryanglab/xtail/f/vignettes/xtail.Rmd)  
+[xtail vignettes](https://rdrr.io/github/xryanglab/xtail/f/vignettes/xtail.Rmd)  
 Studying the changes in translation efficiency in two conditions. You need to 
 1. Make a gtf/gff3 file for only CDS region of all genes.
 2. Map the Ribo-seq and RNA-seq reads to the CDS only gtf/gff regions of the genome with STAR.
