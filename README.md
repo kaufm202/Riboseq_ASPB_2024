@@ -2,7 +2,7 @@
 <img src="https://github.com/kaufm202/Riboseq_ASPB_2024/assets/113535253/35185277-46a1-4db9-bba4-32a8da6bdf4c" width=65% height=65%>
 
 ### Setup and general recommendations
-Steps 1-5 and 7 are run with bash scripts using packages available through [miniconda](https://docs.anaconda.com/free/miniconda/)
+[Steps 1-5 and 7](https://github.com/kaufm202/Riboseq_ASPB_2024/blob/main/preprocessing_pipeline.md) are run with bash scripts using packages available through [miniconda](https://docs.anaconda.com/free/miniconda/)
 
 Step 6 (Ribo-seQC) is run in [R](https://cran.r-project.org/bin/windows/base/)  
 
